@@ -1,0 +1,7 @@
+view(Signs)
+
+ parking <- read.csv(file ="C:/Users/peran/Desktop/Project1/parking_duration_of_parking_event_vs_street_ID.csv")
+
+ View(parking)
+
+ unique(parking$Sign)
