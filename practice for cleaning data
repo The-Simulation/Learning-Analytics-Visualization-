@@ -1,0 +1,12 @@
+et
+    Quelle = Csv.Document(File.Contents("D:\BI\Foren\CSVTest.csv"),[Delimiter=",", Encoding=1252]),
+    PromoteHeaderOptional = Table.PromoteHeaders(Quelle),
+    MergeDisOnly = Table.ReplaceValue(PromoteHeaderOptional,"DIS ONLY","DIS_ONLY",Replacer.ReplaceText,{"Column1"}),
+    RemoveNoPark = Table.ReplaceValue(MergeDisOnly,"- No Park","",Replacer.ReplaceText,{"Column1"}),
+    SplitColumn = Table.SplitColumn(RemoveNoPark,"Column1",Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv),{"Column1.1", "Column1.2", "Column1.3", "Column1.4", "Column1.5", "Column1.6"}),
+    Column4 = Table.AddColumn(SplitColumn, "Column4", each if Text.Start([Column1.4],2)="0:" then [Column1.4] else if Text.Start([Column1.3],2)="0:" then [Column1.3] else ""),
+    Column3 = Table.AddColumn(Column4, "Column3", each if Character.ToNumber(Text.Start([Column1.3],1))>58 then [Column1.3] else [Column1.2]),
+    Column2 = Table.AddColumn(Column3, "Column2", each if Character.ToNumber(Text.Start([Column1.3],1))>58 then [Column1.2] else ""),
+    CleanUp = Table.SelectColumns(Column2,{"Column1.1", "Column2", "Column3", "Column4"})
+in
+    CleanUp
