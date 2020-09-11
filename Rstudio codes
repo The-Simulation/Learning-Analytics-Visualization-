@@ -1,0 +1,94 @@
+install.packages("dplyr")
+
+ library(dplyr)
+
+ setwd("C:\Users\peran\Desktop\Project1")
+
+ parking <- read.csv(file ="C:/Users/peran/Desktop/Project1/parking_duration_of_parking_event_vs_street_ID.csv")
+ 
+#view the dataset
+
+ View(parking)
+ 
+#top ten tables to view
+
+ parking <- tbl_df(parking)
+
+ parking
+ 
+head(parking)
+
+ tail(parking)
+
+ #Dim is for showing the numbers of rows and columns
+
+ dim(parking)
+ 
+#To see the colums names and relationship b/w them that we have on dataset
+
+ names(parking)
+
+ ho
+
+ #
+
+ glimpse(parking)
+ 
+
+
+ #Descriptive Statistics
+
+ #to disply all sign values
+
+ parking$Sign
+ 
+#get the unique values of sign
+
+ unique(parking$Sign)
+
+ #length of the unique sigs table 
+
+ length(unique(parking$Sign)) 
+ 
+# this is descriptive statistics 
+
+ #calculate the Age mean, median, range 
+
+ mean(parking$Sign) # this is not working for some reasons
+
+ median(parking$Sign)
+
+ range(parking$Sign)
+ 
+
+
+ #Basic summary statistics on each variable in the data 
+
+ #get the summary value of all  variable 
+
+ summary(parking) 
+ 
+
+
+ #False means there is not any null value true means There is Null.
+
+ is.na(parking$Sign)
+ 
+#is.na() function tells you if a value is missing 
+
+ #no we donot have any null vale so its zero
+
+ sum(is.na(parking$Sign))
+ 
+#Exploratory Data Analysis
+ 
+#Load the library
+
+ install.packages("ggplot2")
+
+ library(ggplot2)
+ 
+#Data Visualization
+
+ ggplot(parking, aes()+ geom_histogram(bins=30) //this is not working 
+ 
